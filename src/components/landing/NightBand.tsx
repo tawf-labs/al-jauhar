@@ -57,7 +57,7 @@ export default function NightBand() {
 
         <Reveal delay={0.15} className="flex justify-center">
           <ArchFrame className="aspect-[3/4] w-[min(360px,80vw)]">
-            <img src={PHOTOS.jamaah.src} alt={n.photoAlt} loading="lazy" className="h-full w-full object-cover" />
+            <img src={PHOTOS.kaligrafi} alt={n.photoAlt} loading="lazy" className="h-full w-full object-cover" />
             <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#0a3f2f]/70 via-transparent to-transparent" />
           </ArchFrame>
         </Reveal>

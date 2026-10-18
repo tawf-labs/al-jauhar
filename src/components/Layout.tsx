@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Menu } from 'lucide-react';
 import { Logo } from './landing/landingCommon';
 import { useLang } from '../i18n/LangContext';
-import { SITE, PHOTOS, waLink, mapsLink } from '../content/site';
+import { SITE, waLink, mapsLink } from '../content/site';
 import { Star8 } from './ui/islamic';
 
 const TAWF_LABS_URL = 'https://tawflabs.com';
@@ -164,19 +164,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-            <div className="flex flex-col items-center gap-1 md:items-start">
-              <p>&copy; {new Date().getFullYear()} {SITE.fullName}. {t.footer.rights}</p>
-              <p className="text-white/35">
-                {t.footer.photos}:{' '}
-                {Object.values(PHOTOS).map((ph, i) => (
-                  <React.Fragment key={ph.src}>
-                    {i > 0 && ', '}
-                    <a href={ph.url} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:text-white hover:underline">{ph.credit}</a>
-                  </React.Fragment>
-                ))}{' '}
-                / Unsplash
-              </p>
-            </div>
+            <p>&copy; {new Date().getFullYear()} {SITE.fullName}. {t.footer.rights}</p>
             <div className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
               <TawfLabsCredit label={t.footer.builtWith} />
               <p className="font-serif text-base text-tawf-gold" lang="ar" dir="rtl">بَارَكَ اللهُ فِيكُمْ</p>

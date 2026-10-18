@@ -48,10 +48,10 @@ export const AR = {
   hadith: 'مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ فِي الْجَنَّةِ مِثْلَهُ',
 } as const;
 
-/* TODO: replace with real photos of Musholla Al Jauhar. Both are free under the Unsplash License. */
+/* Photos of Musholla Al Jauhar, cropped 3:4 for the arch frames */
 export const PHOTOS = {
-  interior: { src: '/images/masjid-interior.webp', credit: 'Alim', url: 'https://unsplash.com/photos/pXMJRUjI-84' },
-  jamaah: { src: '/images/sholat-berjamaah.webp', credit: 'Rumman Amin', url: 'https://unsplash.com/photos/i1bfxi1cFBY' },
+  mihrab: '/images/mihrab.webp',
+  kaligrafi: '/images/kaligrafi.webp',
 } as const;
 
 export const waLink = (text = '') =>
@@ -107,7 +107,7 @@ const id = {
 
   mission: {
     eyebrow: 'Tentang Al Jauhar',
-    photoAlt: 'Jamaah duduk di dalam masjid dengan mihrab berhias kaligrafi',
+    photoAlt: 'Mihrab Musholla Al Jauhar berhias ukiran emas dan kaligrafi Allah',
     title: 'Permata kecil di tengah kampung',
     desc: '“Al Jauhar” berarti permata. Musholla warga Permata Regency ini baru saja dimulai, masih kecil, dan tumbuh bersama jamaah. Kami ingin menjadikannya tempat yang menenangkan, tempat ibadah terjaga, ilmu diajarkan, dan silaturrahmi antar warga tumbuh.',
   },
@@ -211,7 +211,7 @@ const id = {
     cta1: 'Wakaf Pembangunan',
     cta2: 'Gabung Grup Jamaah',
     joinText: 'Assalamu’alaikum, saya ingin bergabung dengan grup jamaah Musholla Al Jauhar.',
-    photoAlt: 'Jamaah sholat berjamaah di dalam masjid',
+    photoAlt: 'Kaligrafi Allah berwarna emas di dinding marmer Musholla Al Jauhar',
   },
 
   footer: {
@@ -219,7 +219,6 @@ const id = {
     explore: 'Jelajahi',
     contact: 'Kontak',
     rights: 'Hak cipta dilindungi.',
-    photos: 'Foto',
     builtWith: 'Dibangun bersama',
   },
 };
@@ -273,7 +272,7 @@ const en: SiteContent = {
 
   mission: {
     eyebrow: 'About Al Jauhar',
-    photoAlt: 'Congregation seated inside a mosque before a mihrab decorated with calligraphy',
+    photoAlt: 'The mihrab of Musholla Al Jauhar with gold carving and Allah calligraphy',
     title: 'A small jewel in the heart of the kampung',
     desc: '“Al Jauhar” means the jewel. This musholla of the Permata Regency community has only just begun. It is still small and growing with its congregation. We want it to be a place of calm, where worship is kept, knowledge is taught, and the bonds between neighbours grow.',
   },
@@ -377,7 +376,7 @@ const en: SiteContent = {
     cta1: 'Building Waqf',
     cta2: 'Join the Congregation Group',
     joinText: 'Assalamu’alaikum, I would like to join the Al Jauhar Musholla congregation group.',
-    photoAlt: 'Congregation praying together inside a mosque',
+    photoAlt: 'Gold Allah calligraphy on the marble wall of Musholla Al Jauhar',
   },
 
   footer: {
@@ -385,7 +384,6 @@ const en: SiteContent = {
     explore: 'Explore',
     contact: 'Contact',
     rights: 'All rights reserved.',
-    photos: 'Photos',
     builtWith: 'Built with',
   },
 };

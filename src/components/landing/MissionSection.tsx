@@ -25,7 +25,7 @@ export default function MissionSection() {
           <div className="relative flex items-end justify-center py-8">
             <StarPattern color={GOLD} opacity={0.4} size={64} mask="radial-gradient(circle at 50% 55%, #000 20%, transparent 65%)" />
             <ArchFrame className="aspect-[3/4] w-[min(320px,78%)]">
-              <img src={PHOTOS.interior.src} alt={m.photoAlt} loading="lazy" className="h-full w-full object-cover" />
+              <img src={PHOTOS.mihrab} alt={m.photoAlt} loading="lazy" className="h-full w-full object-cover" />
             </ArchFrame>
           </div>
         </Reveal>
