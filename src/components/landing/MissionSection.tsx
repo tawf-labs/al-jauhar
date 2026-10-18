@@ -349,7 +349,7 @@ export default function MissionSection() {
           ))}
 
           <Reveal delay={0.24} className="relative col-span-6 min-h-[320px] overflow-hidden border-b border-[#e4e6ea] px-6 pt-8 md:px-8 lg:col-span-3 lg:border-r lg:px-8">
-            <h3 className="mb-2 flex flex-wrap items-center gap-2.5 text-base font-semibold tracking-tight text-tawf-ink">{m.fourth.title} <StatusPill status="soon" /></h3>
+            <h3 className="mb-2 flex flex-wrap items-center gap-2.5 text-base font-semibold tracking-tight text-tawf-ink">{m.fourth.title} <StatusPill status={m.fourth.status} /></h3>
             <p className="max-w-[52ch] text-[14.5px] leading-[1.55] text-tawf-muted">{m.fourth.desc}</p>
             <div className="relative mt-7 min-h-[250px] flex-1"><QardVisual /></div>
           </Reveal>

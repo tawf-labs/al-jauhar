@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, AtSign, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, MapPin, MessageCircle, Users } from 'lucide-react';
 import { CONTAINER, Kick, Lnk, Reveal, ACC, ACC_SOFT, MUTED2, LINE2, TILE } from './landingCommon';
 import { useLang } from '../../i18n/LangContext';
 import { OrnamentDivider } from '../ui/islamic';
@@ -10,9 +10,7 @@ export default function LocationSection() {
   const l = t.location;
 
   const contacts = [
-    { icon: MessageCircle, label: SITE.whatsappLabel, href: waLink() },
-    { icon: Mail, label: SITE.email, href: `mailto:${SITE.email}` },
-    { icon: AtSign, label: SITE.instagram, href: `https://instagram.com/${SITE.instagram.replace('@', '')}` },
+    { icon: MessageCircle, label: `WhatsApp ${SITE.whatsappLabel}`, href: waLink() },
   ];
 
   return (
@@ -50,7 +48,7 @@ export default function LocationSection() {
                       <li key={label}>
                         <a
                           href={href}
-                          target={href.startsWith('mailto') ? undefined : '_blank'}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="group flex items-center gap-3 rounded-[10px] border bg-white px-3.5 py-2.5 text-sm text-[#14181c] transition-colors hover:border-[#0e8a5f]"
                           style={{ borderColor: '#e4e6ea' }}
@@ -62,6 +60,14 @@ export default function LocationSection() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-4 flex gap-2.5 text-[13px] leading-[1.55]" style={{ color: MUTED2 }}>
+                    <Users className="mt-0.5 size-4 shrink-0" style={{ color: ACC }} />
+                    <span>
+                      <span className="font-medium text-[#14181c]">{SITE.org}</span>
+                      <br />
+                      {SITE.community}
+                    </span>
+                  </p>
                 </div>
               </div>
 
@@ -82,13 +88,28 @@ export default function LocationSection() {
                       maps · {SITE.mapsQuery}
                     </span>
                   </div>
-                  <iframe
-                    title={l.mapTitle}
-                    src={mapsEmbed}
-                    className="block h-[340px] w-full border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                  <div className="relative">
+                    <iframe
+                      title={l.mapTitle}
+                      src={mapsEmbed}
+                      className="block h-[340px] w-full border-0 bg-[#f5f6f8]"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
+                    {/* Always reachable, even if the embed fails to load on the visitor's network */}
+                    <a
+                      href={mapsLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px] font-medium text-white shadow-[0_6px_16px_rgba(14,138,95,.35)] transition-colors hover:bg-[#0b7551]"
+                      style={{ background: ACC }}
+                    >
+                      <MapPin className="size-4" />
+                      {l.open}
+                      <ArrowUpRight className="size-3.5" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

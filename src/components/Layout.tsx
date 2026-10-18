@@ -160,8 +160,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="text-white font-sans font-medium tracking-widest uppercase text-xs mb-6">{t.footer.contact}</h4>
               <ul className="space-y-4 text-sm">
                 <li><a href={waLink()} target="_blank" rel="noopener noreferrer" className="hover:text-tawf-gold transition-colors">WhatsApp {SITE.whatsappLabel}</a></li>
-                <li><a href={`mailto:${SITE.email}`} className="hover:text-tawf-gold transition-colors">{SITE.email}</a></li>
-                <li><a href={`https://instagram.com/${SITE.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-tawf-gold transition-colors">Instagram {SITE.instagram}</a></li>
                 <li><a href={mapsLink} target="_blank" rel="noopener noreferrer" className="hover:text-tawf-gold transition-colors">Google Maps</a></li>
                 <li><a href={TAWF_LABS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-tawf-gold transition-colors">Tawf Labs</a></li>
               </ul>
