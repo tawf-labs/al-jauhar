@@ -8,7 +8,6 @@ import PlatformsSection from './components/landing/PlatformsSection';
 import ScheduleSection from './components/landing/ScheduleSection';
 import GetStartedSection from './components/landing/GetStartedSection';
 import LocationSection from './components/landing/LocationSection';
-import VerifiedSection from './components/landing/VerifiedSection';
 import NightBand from './components/landing/NightBand';
 
 export default function App() {
@@ -22,7 +21,6 @@ export default function App() {
         <ScheduleSection />
         <GetStartedSection />
         <LocationSection />
-        <VerifiedSection />
         <NightBand />
       </Layout>
     </LangProvider>

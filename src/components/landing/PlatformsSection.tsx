@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
-import { CONTAINER, Reveal, Kick, Lnk, StatusPill, ACC, ACC_SOFT, MUTED2, LINE2, TILE, TILE_LINE, usePrefersReducedMotion } from './landingCommon';
+import { CONTAINER, Reveal, Kick, Lnk, ACC, ACC_SOFT, MUTED2, LINE2, TILE, TILE_LINE, usePrefersReducedMotion } from './landingCommon';
 import { useLang } from '../../i18n/LangContext';
 import { AR, waLink } from '../../content/site';
 import type { SiteContent } from '../../content/site';
@@ -27,11 +27,10 @@ function Rise({ on, delay = 0, className, children }: { on: boolean; delay?: num
   );
 }
 
-function VisualHead({ title, badge, on, soon = false }: { title: string; badge: string; on: boolean; soon?: boolean }) {
+function VisualHead({ title, on }: { title: string; on: boolean }) {
   return (
-    <Rise on={on} className="mb-4 flex items-center justify-between">
+    <Rise on={on} className="mb-4">
       <b className="text-[14px] font-semibold text-[#14181c]">{title}</b>
-      <span className={`rounded-full px-2 py-1 font-mono text-[11px] font-medium ${soon ? 'border border-[#e3d3a8] bg-[#fbf6ea] text-[#9a7a2e]' : 'bg-[#0e8a5f]/[.13] text-[#0e8a5f]'}`}>{badge}</span>
     </Rise>
   );
 }
@@ -44,7 +43,7 @@ function DonationVisual({ on, v }: { on: boolean; v: V }) {
   const { rows } = v.ledger;
   return (
     <div>
-      <VisualHead title={v.ledger.title} badge={v.ledger.badge} on={on} />
+      <VisualHead title={v.ledger.title} on={on} />
       <div className="grid gap-2">
         {rows.map(([name, hash], i) => (
           <Rise key={name} on={on} delay={100 + i * 90} className="flex items-center gap-3 rounded-[10px] border border-[#e4e6ea] bg-white px-3.5 py-2.5 font-mono text-xs">
@@ -69,11 +68,11 @@ function DonationVisual({ on, v }: { on: boolean; v: V }) {
 }
 
 /* Checklist timeline for programs that are still being prepared (TPA, qurban) */
-function StepsVisual({ on, data }: { on: boolean; data: { title: string; badge: string; steps: (string | boolean)[][] } }) {
+function StepsVisual({ on, data }: { on: boolean; data: { title: string; steps: (string | boolean)[][] } }) {
   const steps = data.steps as [string, string, boolean][];
   return (
     <div>
-      <VisualHead title={data.title} badge={data.badge} on={on} soon />
+      <VisualHead title={data.title} on={on} />
       <div className="relative pl-6">
         <span className="absolute bottom-2 left-[5px] top-2 w-px bg-[#e4e6ea]" />
         {steps.map(([title, sub, done], i) => (
@@ -96,7 +95,7 @@ function WaqfChartVisual({ on, v }: { on: boolean; v: V }) {
   const yields = [8, 16, 26, 38, 50, 62];
   return (
     <div>
-      <VisualHead title={v.wakaf.title} badge={v.wakaf.badge} on={on} />
+      <VisualHead title={v.wakaf.title} on={on} />
       <Rise on={on} delay={80} className="rounded-[10px] border border-[#e4e6ea] bg-[#fafafa] p-3">
         <div className="flex h-[124px] items-end gap-2">
           {yields.map((h, i) => (
@@ -229,7 +228,6 @@ export default function PlatformsSection() {
                           <span className="text-[17px] font-semibold tracking-tight transition-colors duration-500" style={{ color: on ? '#14181c' : MUTED2 }}>
                             {p.title}
                           </span>
-                          <StatusPill status={p.status} className="ml-auto" />
                         </button>
                       </h3>
 
@@ -246,18 +244,7 @@ export default function PlatformsSection() {
                         <div className="overflow-hidden">
                           <div className="px-6 pb-6 md:px-8">
                             <p className="max-w-[44ch] text-[15px] leading-[1.6]" style={{ color: MUTED2 }}>{p.desc}</p>
-                            <div className="mt-4 flex flex-wrap gap-1.5">
-                              {p.tags.map(([t, green]) => (
-                                <span
-                                  key={t as string}
-                                  className="whitespace-nowrap rounded-full border px-2.5 py-1 text-xs"
-                                  style={green ? { color: ACC, background: ACC_SOFT, borderColor: 'transparent' } : { background: TILE, borderColor: TILE_LINE, color: MUTED2 }}
-                                >
-                                  {t}
-                                </span>
-                              ))}
-                            </div>
-                            <div className="pt-5"><Lnk href={waLink(`Assalamu’alaikum, saya ingin bertanya tentang program ${p.label}.`)}>{pr.visit}</Lnk></div>
+                            <div className="pt-4"><Lnk href={waLink(`Assalamu’alaikum, saya ingin bertanya tentang program ${p.label}.`)}>{pr.visit}</Lnk></div>
                           </div>
                         </div>
                       </div>
@@ -320,11 +307,7 @@ export default function PlatformsSection() {
                     <span className="flex items-center gap-2 text-xs font-medium transition-colors duration-500" style={{ color: active === i ? '#14181c' : MUTED2 }}>
                       <span
                         className="size-2.5 rounded-full border transition-all duration-500"
-                        style={
-                          active === i
-                            ? { background: p.status === 'live' ? ACC : '#C5A869', borderColor: p.status === 'live' ? ACC : '#C5A869', boxShadow: `0 0 0 4px ${p.status === 'live' ? ACC_SOFT : 'rgba(197,168,105,.2)'}` }
-                            : { background: '#fff', borderColor: p.status === 'live' ? MUTED2 : '#C5A869', borderStyle: p.status === 'live' ? 'solid' : 'dashed' }
-                        }
+                        style={active === i ? { background: ACC, borderColor: ACC, boxShadow: `0 0 0 4px ${ACC_SOFT}` } : { background: '#fff', borderColor: MUTED2 }}
                       />
                       {p.label}
                     </span>

@@ -26,10 +26,6 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
               className="mb-6"
             >
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#e3d3a8] bg-[#fbf6ea] px-3 py-1 text-xs font-medium text-[#9a7a2e]">
-                <span className="size-1.5 rounded-full bg-[#0e8a5f]" />
-                {h.badge}
-              </span>
               <Bismillah className="text-[clamp(26px,2.6vw,34px)]" />
               <p className="mt-1 text-xs italic text-tawf-muted">{h.bismillahTr}</p>
             </motion.div>

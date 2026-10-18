@@ -142,9 +142,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="col-span-1 md:col-span-2">
               <Brand light />
               <p className="mt-6 text-sm max-w-sm leading-relaxed">{t.footer.tagline}</p>
-              <p className="mt-4 text-sm max-w-sm leading-relaxed text-white/40">
-                {SITE.street}, {SITE.area}, {SITE.city}
-              </p>
             </div>
 
             <div>

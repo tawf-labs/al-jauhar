@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, MapPin, MessageCircle, Users } from 'lucide-react';
-import { CONTAINER, Kick, Lnk, Reveal, ACC, ACC_SOFT, MUTED2, LINE2, TILE } from './landingCommon';
+import { CONTAINER, Kick, Label, Lnk, Reveal, ACC, ACC_SOFT, MUTED2, LINE2, TILE } from './landingCommon';
 import { useLang } from '../../i18n/LangContext';
 import { OrnamentDivider } from '../ui/islamic';
 import { AR, SITE, mapsEmbed, mapsLink, waLink } from '../../content/site';
@@ -28,7 +28,7 @@ export default function LocationSection() {
             <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
               <div className="flex flex-col">
                 <div className="border-b px-6 py-7 md:px-8" style={{ borderColor: LINE2 }}>
-                  <span className="rounded-full px-2 py-1 font-mono text-[11px] font-medium" style={{ color: ACC, background: ACC_SOFT }}>{l.address}</span>
+                  <Label>{l.address}</Label>
                   <p className="mt-4 flex gap-3 text-[17px] font-semibold tracking-tight text-[#14181c]">
                     <MapPin className="mt-0.5 size-5 shrink-0" style={{ color: ACC }} />
                     <span>
@@ -42,7 +42,7 @@ export default function LocationSection() {
                 </div>
 
                 <div className="flex-1 px-6 py-7 md:px-8">
-                  <span className="rounded-full px-2 py-1 font-mono text-[11px] font-medium" style={{ color: ACC, background: ACC_SOFT }}>{l.contact}</span>
+                  <Label>{l.contact}</Label>
                   <ul className="mt-4 grid gap-2">
                     {contacts.map(({ icon: Icon, label, href }) => (
                       <li key={label}>

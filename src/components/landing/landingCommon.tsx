@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { useLang } from '../../i18n/LangContext';
 
 export const CONTAINER = 'max-w-7xl mx-auto px-6';
 
@@ -83,19 +82,9 @@ export function Kick({ children, className = '', ar }: { children: React.ReactNo
   );
 }
 
-/* "Berjalan" (running now) vs "Segera hadir" (being prepared) */
-export function StatusPill({ status, className = '' }: { status: string; className?: string }) {
-  const { t } = useLang();
-  const live = status === 'live';
-  return (
-    <span
-      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2 py-0.5 font-sans text-[11px] font-medium tracking-normal ${className}`}
-      style={live ? { color: ACC, background: ACC_SOFT, borderColor: 'transparent' } : { color: '#9a7a2e', background: '#fbf6ea', borderColor: '#e3d3a8' }}
-    >
-      <span className={`size-1.5 rounded-full ${live ? 'animate-pulse motion-reduce:animate-none' : ''}`} style={{ background: live ? ACC : '#C5A869' }} />
-      {live ? t.status.live : t.status.soon}
-    </span>
-  );
+/* Small caps label for card sub-headings (Alamat, Kontak, Rekening) */
+export function Label({ children }: { children: React.ReactNode }) {
+  return <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em]" style={{ color: ACC }}>{children}</span>;
 }
 
 export function Lnk({ href, children }: { href: string; children: React.ReactNode }) {

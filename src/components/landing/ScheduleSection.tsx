@@ -1,11 +1,11 @@
 import React from 'react';
 import { CalendarDays, Clock, MapPin, Mic } from 'lucide-react';
-import { CONTAINER, Kick, StatusPill, ACC, ACC_SOFT, MUTED2, LINE2, TILE, TILE_LINE, Reveal } from './landingCommon';
+import { CONTAINER, Kick, ACC, MUTED2, LINE2, TILE, Reveal } from './landingCommon';
 import { useLang } from '../../i18n/LangContext';
 import { OrnamentDivider, StarPattern, Star8, GOLD, NIGHT } from '../ui/islamic';
 import { AR, NEXT_KAJIAN, SITE } from '../../content/site';
 
-/* Featured monthly kajian; the badge follows the clock so the card never claims a past event is upcoming. */
+/* Featured monthly kajian; the "today / upcoming / held" text follows the clock so a past event never reads as upcoming. */
 function KajianCard() {
   const { t } = useLang();
   const e = t.schedule.event;
@@ -37,21 +37,9 @@ function KajianCard() {
         </div>
 
         <div>
-          <div className="mb-3 flex flex-wrap items-center gap-2.5">
-            <span className="text-sm font-medium" style={{ color: ACC }}>{e.kick}</span>
-            <span
-              className="rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-              style={
-                state === 'past'
-                  ? { color: MUTED2, background: TILE }
-                  : state === 'today'
-                    ? { color: '#fff', background: ACC }
-                    : { color: ACC, background: ACC_SOFT }
-              }
-            >
-              {e[state]}
-            </span>
-          </div>
+          <p className="mb-3 text-sm font-medium" style={{ color: ACC }}>
+            {e.kick} <span style={{ color: state === 'past' ? MUTED2 : '#9a7a2e' }}>· {e[state]}</span>
+          </p>
           <h3 className="max-w-[24em] text-[clamp(22px,2.4vw,30px)] font-medium leading-[1.2] tracking-tight text-[#14181c]">“{e.theme}”</h3>
 
           <ul className="mt-5 grid gap-2.5 text-[14.5px] sm:grid-cols-2" style={{ color: MUTED2 }}>
@@ -90,40 +78,24 @@ export default function ScheduleSection() {
           <KajianCard />
           <div className="overflow-hidden rounded-2xl border" style={{ borderColor: LINE2 }}>
             {/* Header row (desktop) */}
-            <div className="hidden grid-cols-[1fr_1fr_2fr_1.4fr_1fr] gap-6 border-b px-8 py-3.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] md:grid" style={{ borderColor: LINE2, background: TILE, color: MUTED2 }}>
+            <div className="hidden grid-cols-[1.2fr_1.2fr_2fr_1.2fr] gap-6 border-b px-8 py-3.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] md:grid" style={{ borderColor: LINE2, background: TILE, color: MUTED2 }}>
               {s.cols.map((c) => <span key={c}>{c}</span>)}
             </div>
 
             <ul>
-              {s.rows.map(([day, time, activity, by, status], i) => {
-                const live = status === 'live';
-                return (
-                  <li
-                    key={i}
-                    className={`group relative grid gap-1 border-b px-6 py-5 transition-colors duration-500 last:border-b-0 md:grid-cols-[1fr_1fr_2fr_1.4fr_1fr] md:items-center md:gap-6 md:px-8 ${live ? 'hover:bg-[#fafafa]' : 'bg-[#fdfbf6] hover:bg-[#fbf6ea]'}`}
-                    style={{ borderColor: LINE2 }}
-                  >
-                    <span aria-hidden="true" className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100 motion-reduce:transition-none" style={{ background: live ? ACC : '#C5A869' }} />
-                    <span className="flex items-center justify-between gap-3 text-[15px] font-semibold" style={{ color: live ? '#14181c' : MUTED2 }}>
-                      {day}
-                      <StatusPill status={status} className="md:hidden" />
-                    </span>
-                    <span>
-                      <span
-                        className="inline-block rounded-full px-2 py-0.5 font-mono text-[11px] font-medium"
-                        style={live ? { color: ACC, background: ACC_SOFT } : { color: MUTED2, background: TILE }}
-                      >
-                        {time}
-                      </span>
-                    </span>
-                    <span className="text-[15px]" style={{ color: live ? '#14181c' : MUTED2 }}>{activity}</span>
-                    <span className="text-sm" style={{ color: MUTED2 }}>
-                      <span className="inline-block rounded-full border px-2.5 py-0.5 text-xs" style={{ background: TILE, borderColor: TILE_LINE }}>{by}</span>
-                    </span>
-                    <span className="hidden md:block"><StatusPill status={status} /></span>
-                  </li>
-                );
-              })}
+              {s.rows.map(([day, time, activity, by], i) => (
+                <li
+                  key={i}
+                  className="group relative grid gap-1 border-b px-6 py-5 transition-colors duration-500 last:border-b-0 hover:bg-[#fafafa] md:grid-cols-[1.2fr_1.2fr_2fr_1.2fr] md:items-center md:gap-6 md:px-8"
+                  style={{ borderColor: LINE2 }}
+                >
+                  <span aria-hidden="true" className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 transition-transform duration-500 group-hover:scale-y-100 motion-reduce:transition-none" style={{ background: ACC }} />
+                  <span className="text-[15px] font-semibold text-[#14181c]">{day}</span>
+                  <span className="font-mono text-[13px]" style={{ color: ACC }}>{time}</span>
+                  <span className="text-[15px] text-[#14181c]">{activity}</span>
+                  <span className="text-sm" style={{ color: MUTED2 }}>{by}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <p className="mt-4 text-xs" style={{ color: MUTED2 }}>{s.note}</p>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Copy, MessageCircle, QrCode } from 'lucide-react';
-import { CONTAINER, Kick, ACC, ACC_DARK, ACC_SOFT, MUTED2, LINE2, LINE_STRONG, TILE, Reveal } from './landingCommon';
+import { CONTAINER, Kick, Label, ACC, ACC_DARK, ACC_SOFT, MUTED2, LINE2, LINE_STRONG, TILE, Reveal } from './landingCommon';
 import { useLang } from '../../i18n/LangContext';
 import { OrnamentDivider, StarPattern, GOLD } from '../ui/islamic';
 import { AR, SITE, waLink } from '../../content/site';
@@ -77,7 +77,7 @@ export default function GetStartedSection() {
             <span aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 size-[280px] rounded-full blur-3xl" style={{ background: ACC_SOFT }} />
             <StarPattern color={GOLD} opacity={0.5} size={56} mask="radial-gradient(ellipse at 100% 50%, #000 0%, transparent 55%)" />
             <div className="relative">
-              <span className="rounded-full px-2 py-1 font-mono text-[11px] font-medium" style={{ color: ACC, background: ACC_SOFT }}>{g.bankLabel}</span>
+              <Label>{g.bankLabel}</Label>
               <p className="mt-5 text-sm" style={{ color: MUTED2 }}>{SITE.bank.name}</p>
               <p className="mt-1 font-mono text-[clamp(26px,3.4vw,36px)] font-medium tracking-tight text-[#14181c]">{SITE.bank.number}</p>
               <p className="mt-1 text-sm" style={{ color: MUTED2 }}>{g.holderLabel} <span className="font-medium text-[#14181c]">{SITE.bank.holder}</span></p>
@@ -113,6 +113,19 @@ export default function GetStartedSection() {
             <p className="mt-4 text-[15px] font-medium text-[#14181c]">{g.qris}</p>
             <p className="mt-1 max-w-[26ch] text-sm" style={{ color: MUTED2 }}>{g.qrisNote}</p>
           </div>
+        </Reveal>
+
+        {/* QS. Al-Baqarah 2:261 */}
+        <Reveal delay={0.12}>
+          <figure className="relative mx-auto mt-10 max-w-[760px] overflow-hidden rounded-2xl border border-[#C5A869]/40 bg-[#fbf8f1] px-6 py-8 text-center md:px-10">
+            <StarPattern color={GOLD} opacity={0.35} size={56} mask="linear-gradient(90deg, #000, transparent 30%, transparent 70%, #000)" />
+            <div className="relative">
+              <OrnamentDivider align="center" />
+              <p lang="ar" dir="rtl" className="mt-5 font-arabic text-[clamp(22px,2.6vw,30px)] leading-[1.9] text-[#14181c]">{AR.ayah}</p>
+              <blockquote className="mx-auto mt-4 max-w-[46em] text-[15px] italic leading-[1.6]" style={{ color: MUTED2 }}>{g.ayahTr}</blockquote>
+              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#9a7a2e]">{g.ayahRef}</figcaption>
+            </div>
+          </figure>
         </Reveal>
       </div>
     </section>
